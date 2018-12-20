@@ -1,4 +1,5 @@
 !
+version 15.5
 service timestamps debug uptime
 service timestamps log uptime
 no service password-encryption
@@ -17,7 +18,6 @@ interface Loopback0
 !
 interface e0/1
  cdp enable
- no shutdown
 !
 interface e0/1.23
  encapsulation dot1q 23
