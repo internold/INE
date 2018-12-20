@@ -1,0 +1,87 @@
+Task1: Configure all inter-switch links on SW2, SW3, and SW4 to be in dynamic auto state.
+
+SW2:
+!
+interface range e0/1-2, e1/1-2
+ switchport mode dynamic auto
+!
+
+SW3:
+!
+interface range e1/1-2, e2/1-2
+ switchport mode dynamic auto
+!
+
+SW4:
+!
+interface range e0/1-2, e2/1-2
+ switchport mode dynamic auto
+!
+
+
+Task2: Configure all inter-switch links on SW1 to be in dynamic desirable state.
+
+SW1:
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport mode dynamic desirable
+!
+
+Task3: Configure SW2 as a VTP server in the domain named CCIE.
+
+SW2:
+!
+vtp domain CCIE
+!
+
+Task3.1: Configure SW1, SW3, and SW4 as VTP clients in the domain CCIE.
+
+SW1:
+!
+vtp domain CCIE
+vtp mode client
+!
+
+SW3:
+!
+vtp domain CCIE
+vtp mode client
+!
+
+SW4:
+!
+vtp domain CCIE
+vtp mode client
+!
+
+Task3.2: Authenticate VTP messages using the string of VTPPASS.
+
+SW2:
+!
+vtp password VTPPASS
+!
+
+SW1:
+!
+vtp password VTPPASS
+!
+
+SW3:
+!
+vtp password VTPPASS
+!
+
+SW4:
+!
+vtp password VTPPASS
+!
+
+Task4: Configure VLANs 5, 7, 8, 9, 10, 22, 43, 58, 67, 79, and 146 on SW2.
+
+SW2:
+!
+vlan 5,7,8,9,10,22,43,58,67,79,146
+exit
+!
+
+Task5: For verification, ensure that SW1, SW3, and SW4 learn about these new VLANs through VTP.

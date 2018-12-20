@@ -18,12 +18,17 @@
 18 CCIE R&S v5 Full-Scale Labs
 19 CCIE R&S v5 Mock Labs
 
+===================
+
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 00 - Initial Configurations
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 01 - Layer 2 Access Switchports
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 02 - Layer 2 Dynamic Switchports
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 03 - 802.1q Dynamic Trunking
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 04 - 802.1q Native VLAN
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 05 - DTP Negotiation
+00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 06 - VTP Domain
+
+===================
 
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 00 - initial configurations
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 01 - lab01 title

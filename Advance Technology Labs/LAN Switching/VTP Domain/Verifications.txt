@@ -1,0 +1,211 @@
+After Task2:
+
+SW1#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       desirable        n-isl          trunking      1
+Et0/2       desirable        n-isl          trunking      1
+Et1/1       desirable        n-isl          trunking      1
+Et1/2       desirable        n-isl          trunking      1
+Et2/1       desirable        n-isl          trunking      1
+Et2/2       desirable        n-isl          trunking      1
+<clipped>
+
+SW2#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et2/1       auto             n-isl          trunking      1
+Et2/2       auto             n-isl          trunking      1
+<clipped>
+
+SW3#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       auto             n-isl          trunking      1
+Et0/2       auto             n-isl          trunking      1
+<clipped>
+
+SW2#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et1/1       auto             n-isl          trunking      1
+Et1/2       auto             n-isl          trunking      1
+<clipped>
+
+
+After Task4:
+
+In SW2:
+
+SW2#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.1a00
+Configuration last modified by 0.0.0.0 at 12-20-18 12:41:01
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0x47 0xB5 0x8D 0x44 0xBB 0x76 0x91 0x57
+                                    0xBC 0x9E 0x0D 0x11 0xC6 0x8C 0x22 0x29
+
+SW2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/1, Et0/2, Et0/3
+                                                Et1/0, Et1/1, Et1/2, Et1/3
+                                                Et2/0, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+22   VLAN0022                         active
+43   VLAN0043                         active
+58   VLAN0058                         active
+67   VLAN0067                         active
+79   VLAN0079                         active
+146  VLAN0146                         active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+SW2#
+
+
+In SW1:
+
+SW1#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.1200
+Configuration last modified by 0.0.0.0 at 12-20-18 12:41:01
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0x47 0xB5 0x8D 0x44 0xBB 0x76 0x91 0x57
+                                    0xBC 0x9E 0x0D 0x11 0xC6 0x8C 0x22 0x29
+
+SW1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/3
+                                                Et2/0, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+22   VLAN0022                         active
+43   VLAN0043                         active
+58   VLAN0058                         active
+67   VLAN0067                         active
+79   VLAN0079                         active
+146  VLAN0146                         active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+SW1#
+
+In SW3:
+
+SW3#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.1700
+Configuration last modified by 0.0.0.0 at 12-20-18 12:41:01
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0x47 0xB5 0x8D 0x44 0xBB 0x76 0x91 0x57
+                                    0xBC 0x9E 0x0D 0x11 0xC6 0x8C 0x22 0x29
+SW3#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/1
+                                                Et1/2, Et1/3, Et2/0, Et2/1
+                                                Et2/2, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+22   VLAN0022                         active
+43   VLAN0043                         active
+58   VLAN0058                         active
+67   VLAN0067                         active
+79   VLAN0079                         active
+146  VLAN0146                         active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+SW3#
+
+In SW4:
+
+SW4#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.1500
+Configuration last modified by 0.0.0.0 at 12-20-18 12:41:01
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0x47 0xB5 0x8D 0x44 0xBB 0x76 0x91 0x57
+                                    0xBC 0x9E 0x0D 0x11 0xC6 0x8C 0x22 0x29
+SW4#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/1, Et0/2, Et0/3
+                                                Et1/0, Et1/3, Et2/0, Et2/1
+                                                Et2/2, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+22   VLAN0022                         active
+43   VLAN0043                         active
+58   VLAN0058                         active
+67   VLAN0067                         active
+79   VLAN0079                         active
+146  VLAN0146                         active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+SW4#
