@@ -1,0 +1,19 @@
+!
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname SW4
+!
+no ip domain-lookup
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line vty 0 4
+ no login
+!
+end
