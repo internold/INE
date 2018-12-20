@@ -33,3 +33,4 @@ interface range e1/1-2
 !
 interface range e2/1-2
  switchport mode dynamic auto
+
