@@ -24,7 +24,6 @@
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 03 - 802.1q Dynamic Trunking
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 04 - 802.1q Native VLAN
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 05 - DTP Negotiation
-00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 06 - VTP Domain
 
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 00 - initial configurations
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 01 - lab01 title
