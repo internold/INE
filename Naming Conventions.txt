@@ -28,6 +28,7 @@
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 05 - DTP Negotiation
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 06 - VTP Domain
 00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 07 - VTP Transparent
+00 ine - advanced.technology.labs - 01 lan switching - basic.layer.2.switching - 08 - Private VLANs
 
 ===================
 

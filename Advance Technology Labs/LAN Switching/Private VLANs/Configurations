@@ -1,0 +1,14 @@
+Task1: Configure private-vlan on SW1 as follows:
+> Use VLAN 100 as the primary VLAN.
+> Use VLAN 1000 as the community VLAN.
+> Use VLAN 2000 as the isolated VLAN.
+
+Task2: Configure IP addressing as follows:
+> Assign 169.254.100.1/24 to SW1's SVI on VLAN 100.
+> Assign 169.254.100.2/24 to SW2's e2/2 port.
+> Assign 169.254.100.3/24 to SW3's e0/2 port.
+> Assign 169.254.100.4/24 to SW4's e1/2 port.
+
+Task3: Assign SW1's interfaces to required VLANs so that:
+> SW1, SW2, and SW3 can communicate directly at Layer 2.
+> SW4 can only communicate with SW1 directly at Layer 2.
