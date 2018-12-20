@@ -1,0 +1,231 @@
+After Task1:
+
+SW1#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+SW2#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+SW3#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+SW4#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+
+After Task1-1:
+
+SW1#show span
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    1
+             Address     aabb.cc00.0500
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    1      (priority 0 sys-id-ext 1)
+             Address     aabb.cc00.0500
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    Shr
+Et0/1               Desg FWD 100       128.2    Shr
+Et0/2               Desg FWD 100       128.3    Shr
+Et0/3               Desg FWD 100       128.4    Shr
+Et1/0               Desg FWD 100       128.5    Shr
+Et1/1               Desg FWD 100       128.6    Shr
+Et1/2               Desg FWD 100       128.7    Shr
+Et1/3               Desg FWD 100       128.8    Shr
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+
+Et2/0               Desg FWD 100       128.9    Shr
+Et2/1               Desg FWD 100       128.10   Shr
+Et2/2               Desg FWD 100       128.11   Shr
+Et2/3               Desg FWD 100       128.12   Shr
+
+
+After Task3:
+
+In SW2:
+
+SW2#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 2
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0c00
+Configuration last modified by 0.0.0.0 at 12-20-18 13:17:37
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 1
+MD5 digest                        : 0xB2 0x38 0x24 0x9C 0xD2 0xF2 0x30 0xA5
+                                    0x06 0xDD 0x44 0x67 0x6B 0xBB 0xC0 0x33
+
+SW2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/3
+                                                Et2/0, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+1002 fddi-default                     act/unsup
+1003 trcrf-default                    act/unsup
+1004 fddinet-default                  act/unsup
+1005 trbrf-default                    act/unsup
+SW2#
+
+
+In SW1:
+
+SW1#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 2
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0500
+Configuration last modified by 0.0.0.0 at 12-20-18 13:15:37
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Transparent
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 5
+Configuration Revision            : 0
+MD5 digest                        : 0xF6 0x2C 0xF4 0x4E 0xFD 0x80 0x90 0xD7
+                                    0xB4 0x30 0x97 0xE3 0x20 0x10 0x10 0x3B
+SW1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/3
+                                                Et2/0, Et2/3
+1002 fddi-default                     act/unsup
+1003 trcrf-default                    act/unsup
+1004 fddinet-default                  act/unsup
+1005 trbrf-default                    act/unsup
+SW1#
+
+In SW3:
+
+SW3#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 2
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0600
+Configuration last modified by 0.0.0.0 at 12-20-18 13:17:37
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 1
+MD5 digest                        : 0xB2 0x38 0x24 0x9C 0xD2 0xF2 0x30 0xA5
+                                    0x06 0xDD 0x44 0x67 0x6B 0xBB 0xC0 0x33
+SW3#
+SW3#
+SW3#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/3
+                                                Et2/0, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+1002 fddi-default                     act/unsup
+1003 trcrf-default                    act/unsup
+1004 fddinet-default                  act/unsup
+1005 trbrf-default                    act/unsup
+SW3#
+
+In SW4:
+
+SW4#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 2
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0700
+Configuration last modified by 0.0.0.0 at 12-20-18 13:17:37
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 1
+MD5 digest                        : 0xB2 0x38 0x24 0x9C 0xD2 0xF2 0x30 0xA5
+                                    0x06 0xDD 0x44 0x67 0x6B 0xBB 0xC0 0x33
+SW4#
+SW4#
+SW4#
+SW4#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et0/0, Et0/3, Et1/0, Et1/3
+                                                Et2/0, Et2/3
+5    VLAN0005                         active
+7    VLAN0007                         active
+8    VLAN0008                         active
+9    VLAN0009                         active
+10   VLAN0010                         active
+1002 fddi-default                     act/unsup
+1003 trcrf-default                    act/unsup
+1004 fddinet-default                  act/unsup
+1005 trbrf-default                    act/unsup
+SW4#

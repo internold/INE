@@ -1,0 +1,81 @@
+Task1: Configure Ethernet links between SW1 and all other switches as static 802.1q trunks.
+
+SW1:
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+
+SW2:
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+
+SW3:
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+
+SW4:
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+
+Task1-1: Ensure SW1 is the root bridge for all VLANs.
+
+SW1:
+!
+spanning-tree vlan 1-4094 priority 0
+!
+
+Task2: Configure VTP version 2 in domain CCIE as follows:
+
+Task2-1: SW1 in transparent mode
+
+SW1:
+!
+vtp domain CCIE
+vtp version 2
+vtp mode transparent
+!
+
+Task2-2: SW2 in server mode
+
+SW2:
+!
+vtp domain CCIE
+vtp version 2
+!
+
+Task2-3: SW3 and SW4 in client mode
+
+SW3:
+!
+vtp domain CCIE
+vtp version 2
+vtp mode client
+!
+
+SW4:
+!
+vtp domain CCIE
+vtp version 2
+vtp mode client
+!
+
+Task3: Configure VLANs 5, 7, 8, 9, and 10 on VTP server.
+
+SW2:
+!
+vlan 5,7,8,9,10
+exit
+!
+
+Task4: Ensure that traffic between hosts within same VLAN is functional regardless of the switch being connected to.
