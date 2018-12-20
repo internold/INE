@@ -1,0 +1,25 @@
+!
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname SW1
+!
+vtp domain CCIE
+vtp mode client
+!
+no ip domain-lookup
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface range e0/1-2, e1/1-2, e2/1-2
+ switchport mode dynamic desirable
+ switchport trunk encapsulation dot1q
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line vty 0 4
+ no login
+!
+end

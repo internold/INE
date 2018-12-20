@@ -31,6 +31,11 @@
 
 ===================
 
+00 ine - advanced.technology.labs - 01 lan switching - lan.switching.initial.vtp - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 01 lan switching - lan.switching.initial.vtp - 01 - VTP Pruning
+
+===================
+
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 00 - initial configurations
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 01 - lab01 title
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 01-1 - lab01 retry  1

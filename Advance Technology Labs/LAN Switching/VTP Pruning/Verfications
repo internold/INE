@@ -1,0 +1,350 @@
+Before Task1:
+
+SW2#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et2/1       auto             802.1q         trunking      1
+Et2/2       auto             802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et2/1       1-4094
+Et2/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et2/1       1,5,7-10,22,43,58,67,79,146
+Et2/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et2/1       1,5,7-10,22,43,58,67,79,146
+Et2/2       1,5,7-10,22,43,58,67,79,146
+SW2#
+
+SW2#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0200
+Configuration last modified by 0.0.0.0 at 12-20-18 13:42:30
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0xD2 0x47 0xDC 0xAD 0x66 0xEE 0x31 0x42
+                                    0xEF 0x6E 0x13 0x4B 0xD4 0x1C 0x37 0x65
+SW2#
+
+
+SW1#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       desirable        802.1q         trunking      1
+Et0/2       desirable        802.1q         trunking      1
+Et1/1       desirable        802.1q         trunking      1
+Et1/2       desirable        802.1q         trunking      1
+Et2/1       desirable        802.1q         trunking      1
+Et2/2       desirable        802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/1       1-4094
+Et0/2       1-4094
+Et1/1       1-4094
+Et1/2       1-4094
+Et2/1       1-4094
+Et2/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/1       1,5,7-10,22,43,58,67,79,146
+Et0/2       1,5,7-10,22,43,58,67,79,146
+Et1/1       1,5,7-10,22,43,58,67,79,146
+Et1/2       1,5,7-10,22,43,58,67,79,146
+Et2/1       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans allowed and active in management domain
+Et2/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/1       1,5,7-10,22,43,58,67,79,146
+Et0/2       1,5,7-10,22,43,58,67,79,146
+Et1/1       1,5,7-10,22,43,58,67,79,146
+Et1/2       1,5,7-10,22,43,58,67,79,146
+Et2/1       1,5,7-10,22,43,58,67,79,146
+Et2/2       none
+SW1#
+
+SW1#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0400
+Configuration last modified by 0.0.0.0 at 12-20-18 13:42:30
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 1
+MD5 digest                        : 0xD2 0x47 0xDC 0xAD 0x66 0xEE 0x31 0x42
+                                    0xEF 0x6E 0x13 0x4B 0xD4 0x1C 0x37 0x65
+SW1#
+
+
+SW3#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       auto             802.1q         trunking      1
+Et0/2       auto             802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/1       1-4094
+Et0/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/1       1,5,7-10,22,43,58,67,79,146
+Et0/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/1       5,7-10,22,43,58,67,79,146
+Et0/2       none
+SW3#
+
+SW4#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et1/1       auto             802.1q         trunking      1
+Et1/2       auto             802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et1/1       1-4094
+Et1/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et1/1       1,5,7-10,22,43,58,67,79,146
+Et1/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et1/1       5,7-10,22,43,58,67,79,146
+Et1/2       none
+SW4#
+
+
+After Task2:
+
+SW2#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Enabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0200
+Configuration last modified by 0.0.0.0 at 12-20-18 13:51:38
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 2
+MD5 digest                        : 0x09 0x9F 0xFD 0x39 0x32 0x9A 0xA5 0x3B
+                                    0xF7 0x68 0x19 0x29 0xD5 0xAA 0x49 0x88
+SW2#
+
+SW2#show int pruning
+
+Port                Vlans pruned for lack of request by neighbor
+Et2/1               5,7-10,22,43,58,67,79,146
+Et2/2               5,7-10,22,43,58,67,79,146
+
+Port                Vlan traffic requested of neighbor
+Et2/1               1
+Et2/2               1
+SW2#
+
+
+SW1#show int e0/1 pruning
+
+Port                Vlans pruned for lack of request by neighbor
+Et0/1               5,7-10,22,43,58,67,79,146
+
+Port                Vlan traffic requested of neighbor
+Et0/1               1
+SW1#
+
+
+SW1#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       desirable        802.1q         trunking      1
+Et0/2       desirable        802.1q         trunking      1
+Et1/1       desirable        802.1q         trunking      1
+Et1/2       desirable        802.1q         trunking      1
+Et2/1       desirable        802.1q         trunking      1
+Et2/2       desirable        802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/1       1-4094
+Et0/2       1-4094
+Et1/1       1-4094
+Et1/2       1-4094
+Et2/1       1-4094
+Et2/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/1       1,5,7-10,22,43,58,67,79,146
+Et0/2       1,5,7-10,22,43,58,67,79,146
+Et1/1       1,5,7-10,22,43,58,67,79,146
+Et1/2       1,5,7-10,22,43,58,67,79,146
+Et2/1       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans allowed and active in management domain
+Et2/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/1       1
+Et0/2       1
+Et1/1       1
+Et1/2       1
+Et2/1       1
+Et2/2       none
+
+SW1#show int pruning
+
+Port                Vlans pruned for lack of request by neighbor
+Et0/1               5,7-10,22,43,58,67,79,146
+Et0/2               5,7-10,22,43,58,67,79,146
+Et1/1               5,7-10,22,43,58,67,79,146
+Et1/2               5,7-10,22,43,58,67,79,146
+Et2/1               5,7-10,22,43,58,67,79,146
+Et2/2               none
+
+Port                Vlan traffic requested of neighbor
+Et0/1               1
+Et0/2               1
+Et1/1               1
+Et1/2               1
+Et2/1               1
+Et2/2               none
+SW1#
+
+
+SW3#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Enabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0600
+Configuration last modified by 0.0.0.0 at 12-20-18 13:51:38
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 2
+MD5 digest                        : 0x09 0x9F 0xFD 0x39 0x32 0x9A 0xA5 0x3B
+                                    0xF7 0x68 0x19 0x29 0xD5 0xAA 0x49 0x88
+SW3#
+
+SW3#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Enabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0600
+Configuration last modified by 0.0.0.0 at 12-20-18 13:51:38
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 2
+MD5 digest                        : 0x09 0x9F 0xFD 0x39 0x32 0x9A 0xA5 0x3B
+                                    0xF7 0x68 0x19 0x29 0xD5 0xAA 0x49 0x88
+SW3#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       auto             802.1q         trunking      1
+Et0/2       auto             802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et0/1       1-4094
+Et0/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et0/1       1,5,7-10,22,43,58,67,79,146
+Et0/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et0/1       none
+Et0/2       none
+
+
+SW3#show int pruning
+
+Port                Vlans pruned for lack of request by neighbor
+Et0/1               5,7-10,22,43,58,67,79,146
+Et0/2               none
+
+Port                Vlan traffic requested of neighbor
+Et0/1               none
+Et0/2               none
+SW3#
+
+
+SW4#show vtp status
+VTP Version capable             : 1 to 3
+VTP version running             : 1
+VTP Domain Name                 : CCIE
+VTP Pruning Mode                : Enabled
+VTP Traps Generation            : Disabled
+Device ID                       : aabb.cc80.0800
+Configuration last modified by 0.0.0.0 at 12-20-18 13:51:38
+
+Feature VLAN:
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 16
+Configuration Revision            : 2
+MD5 digest                        : 0x09 0x9F 0xFD 0x39 0x32 0x9A 0xA5 0x3B
+                                    0xF7 0x68 0x19 0x29 0xD5 0xAA 0x49 0x88
+SW4#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et1/1       auto             802.1q         trunking      1
+Et1/2       auto             802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Et1/1       1-4094
+Et1/2       1-4094
+
+Port        Vlans allowed and active in management domain
+Et1/1       1,5,7-10,22,43,58,67,79,146
+Et1/2       1,5,7-10,22,43,58,67,79,146
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Et1/1       none
+Et1/2       none
+
+SW4#show int pruning
+
+Port                Vlans pruned for lack of request by neighbor
+Et1/1               5,7-10,22,43,58,67,79,146
+Et1/2               none
+
+Port                Vlan traffic requested of neighbor
+Et1/1               none
+Et1/2               none
+SW4#

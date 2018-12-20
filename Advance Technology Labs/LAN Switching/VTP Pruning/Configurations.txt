@@ -1,0 +1,16 @@
+Task1: All switches are pre-configure in VTP domain CCIE.
+Task1-1: Ensure that SW1 is in VTP client mode.
+
+SW1:
+!
+vtp mode client
+!
+
+Task2: Enable VTP pruning in the Layer 2 network so that inter-switch broadcast replication is minimized.
+
+SW2:
+!
+vtp pruning
+!
+
+Task3: Verify that this configuration is functional through the show interface trunk output.
