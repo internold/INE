@@ -1,0 +1,36 @@
+SW1:
+interface range FastEthernet0/19 - 24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+
+SW2:
+interface range FastEthernet0/19 - 22
+ switchport mode dynamic auto
+!
+interface range FastEthernet0/23 - 24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+
+SW3:
+interface range FastEthernet0/19 - 20
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface range FastEthernet0/21 - 24
+ switchport mode dynamic auto
+
+
+SW4:
+interface range FastEthernet0/19 - 20
+ switchport mode dynamic auto
+!
+interface range FastEthernet0/21 - 22
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+!
+interface range FastEthernet0/23 - 24
+ switchport mode dynamic auto
