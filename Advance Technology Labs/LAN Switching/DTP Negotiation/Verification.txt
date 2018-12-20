@@ -1,0 +1,93 @@
+SW1#show int e0/1 switchport | inc Negotiation
+Negotiation of Trunking: Off
+
+
+SW1#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+SW2#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et2/1       on               802.1q         trunking      1
+Et2/2       on               802.1q         trunking      1
+<clipped>
+
+SW3#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et0/1       on               802.1q         trunking      1
+Et0/2       on               802.1q         trunking      1
+<clipped>
+
+SW4#show int trunk
+
+Port        Mode             Encapsulation  Status        Native vlan
+Et1/1       on               802.1q         trunking      1
+Et1/2       on               802.1q         trunking      1
+<clipped>
+
+SW2#show dtp int e0/1
+DTP information for Ethernet0/1:
+  TOS/TAS/TNS:                              ACCESS/AUTO/ACCESS
+  TOT/TAT/TNT:                              NATIVE/NEGOTIATE/NATIVE
+  Neighbor address 1:                       AABBCC000710
+  Neighbor address 2:                       000000000000
+  Hello timer expiration (sec/state):       22/RUNNING
+  Access timer expiration (sec/state):      never/STOPPED
+  Negotiation timer expiration (sec/state): never/STOPPED
+  Multidrop timer expiration (sec/state):   never/STOPPED
+  FSM state:                                S2:ACCESS
+  # times multi & trunk                     0
+  Enabled:                                  yes
+  In STP:                                   no
+
+  Statistics
+  ----------
+  42 packets received (42 good)
+  0 packets dropped
+      0 nonegotiate, 0 bad version, 0 domain mismatches,
+      0 bad TLVs, 0 bad TAS, 0 bad TAT, 0 bad TOT, 0 other
+  84 packets output (84 good)
+      42 native, 42 software encap isl, 0 isl hardware native
+  0 output errors
+  0 trunk timeouts
+  1 link ups, last link up on Thu Dec 20 2018, 11:02:06
+  0 link downs
+
+SW2#show dtp int e2/1
+DTP information for Ethernet2/1:
+  TOS/TAS/TNS:                              TRUNK/NONEGOTIATE/TRUNK
+  TOT/TAT/TNT:                              802.1Q/802.1Q/802.1Q
+  Neighbor address 1:                       AABBCC000512
+  Neighbor address 2:                       000000000000
+  Hello timer expiration (sec/state):       never/STOPPED
+  Access timer expiration (sec/state):      never/STOPPED
+  Negotiation timer expiration (sec/state): never/STOPPED
+  Multidrop timer expiration (sec/state):   never/STOPPED
+  FSM state:                                S6:TRUNK
+  # times multi & trunk                     0
+  Enabled:                                  yes
+  In STP:                                   no
+
+  Statistics
+  ----------
+  22 packets received (22 good)
+  0 packets dropped
+      0 nonegotiate, 0 bad version, 0 domain mismatches,
+      0 bad TLVs, 0 bad TAS, 0 bad TAT, 0 bad TOT, 0 other
+  46 packets output (46 good)
+      24 native, 22 software encap isl, 0 isl hardware native
+  0 output errors
+  0 trunk timeouts
+  1 link ups, last link up on Thu Dec 20 2018, 11:02:06
+  0 link downs
+
+SW2#

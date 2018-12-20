@@ -22,6 +22,7 @@ interface range e0/1-2
 !
 interface range e1/1-2, e2/1-2
  switchport mode dynamic auto
+!
 
 SW4:
 interface range e1/1-2
