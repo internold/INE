@@ -37,11 +37,20 @@
 
 ===================
 
-00 ine - advanced.technology.labs - 03 rip - initial.rip - 00 - initial configurations
-00 ine - advanced.technology.labs - 03 rip - initial.rip - 01 - lab01 title
-00 ine - advanced.technology.labs - 03 rip - initial.rip - 01-1 - lab01 retry  1
-00 ine - advanced.technology.labs - 03 rip - initial.rip - 01-2 - lab01 retry  2
-00 ine - advanced.technology.labs - 03 rip - initial.rip - 02 - lab02 title and so on 
-00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 00 - initial configurations
-00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 01 - lab01 title
+00 ine - advanced.technology.labs - 03 rip - initial.rip - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 00 - Initial Configurations
+
+===================
+
+00 ine - advanced.technology.labs - 04 eigrp - initial.eigrp - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 04 eigrp - basic.eigrp.routing - 00 - Initial Configurations
+
+===================
+
+00 ine - advanced.technology.labs - 05 ospf - initial.ospf - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 05 ospf - basic.ospf.routing - 00 - Initial Configurations
+
+===================
+
+
 
