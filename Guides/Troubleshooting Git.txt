@@ -1,4 +1,17 @@
 
+git add .
+git commit -m 'Description here'
+
+git remote -v
+git remote add 'https://github.com/internold/ccielabprep.git'
+git remote rename
+git remote remove
+git remote set-url
+
+git push -u origin master
+
+ref: https://www.youtube.com/watch?v=SWYqp7iY_Tc
+
 =====================================================================================================
 Error:
 $ git push -u origin master
