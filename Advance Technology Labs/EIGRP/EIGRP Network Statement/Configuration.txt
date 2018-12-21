@@ -1,6 +1,97 @@
 Task1: Configure EIGRP AS 100 on all devices in the topology.
-
 Task2: Enable EIGRP on all interfaces in the 150.1.0.0/16 and 155.1.0.0/16 networks on all devices.
 >  Any new interfaces added should not automatically be advertised into EIGRP, regardless of their IPv4 addresses.
 
+R1:
+!
+router eigrp 100
+ network 155.1.13.1 0.0.0.0
+ network 155.1.146.1 0.0.0.0
+ network 150.1.1.1 0.0.0.0
+ network 155.1.0.1 0.0.0.0
+!
+
+R2:
+!
+router eigrp 100
+ network 150.1.2.2 0.0.0.0
+ network 155.1.0.2 0.0.0.0
+!
+
+R3:
+!
+router eigrp 100
+ network 155.1.13.3 0.0.0.0
+ network 155.1.37.3 0.0.0.0
+ network 150.1.3.3 0.0.0.0
+ network 155.1.0.3 0.0.0.0 
+!
+
+R4:
+!
+router eigrp 100
+ network 155.1.45.4 0.0.0.0
+ network 150.1.4.4 0.0.0.0
+ network 155.1.0.4 0.0.0.0 
+!
+
+R5:
+!
+router eigrp 100
+ network 155.1.5.5 0.0.0.0
+ network 155.1.45.5 0.0.0.0
+ network 155.1.58.5 0.0.0.0 
+ network 150.1.5.5 0.0.0.0
+ network 155.1.0.5 0.0.0.0 
+!
+
+R6:
+!
+router eigrp 100
+ network 155.1.67.6 0.0.0.0
+ network 155.1.146.6 0.0.0.0
+ network 150.1.6.6 0.0.0.0 
+!
+
+R7:
+!
+router eigrp 100
+ network 155.1.7.7 0.0.0.0
+ network 155.1.37.7 0.0.0.0
+ network 155.1.67.7 0.0.0.0 
+ network 155.1.79.7 0.0.0.0
+ network 150.1.7.7 0.0.0.0 
+!
+
+R8:
+!
+router eigrp 100
+ network 155.1.8.8 0.0.0.0
+ network 155.1.58.8 0.0.0.0 
+ network 155.1.108.8 0.0.0.0
+ network 150.1.8.8 0.0.0.0 
+!
+
+R9:
+!
+router eigrp 100
+ network 155.1.9.9 0.0.0.0
+ network 155.1.79.9 0.0.0.0
+ network 150.1.9.9 0.0.0.0 
+!
+
+R10:
+!
+router eigrp 100
+ network 155.1.10.10 0.0.0.0
+ network 155.1.108.10 0.0.0.0
+ network 150.1.10.10 0.0.0.0 
+!
+
 Task3: For verification, all devices should have full IPv4 reachability throughout the network.
+
+R5:
+!
+int tu0
+ no ip split eigrp 100
+!
