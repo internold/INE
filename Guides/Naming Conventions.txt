@@ -46,6 +46,7 @@
 ===================
 
 00 ine - advanced.technology.labs - 04 eigrp - initial.eigrp - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 04 eigrp - initial.eigrp - 01 - EIGRP Network Statement
 00 ine - advanced.technology.labs - 04 eigrp - basic.eigrp.routing - 00 - Initial Configurations
 
 ===================

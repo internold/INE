@@ -1,0 +1,6 @@
+Task1: Configure EIGRP AS 100 on all devices in the topology.
+
+Task2: Enable EIGRP on all interfaces in the 150.1.0.0/16 and 155.1.0.0/16 networks on all devices.
+>  Any new interfaces added should not automatically be advertised into EIGRP, regardless of their IPv4 addresses.
+
+Task3: For verification, all devices should have full IPv4 reachability throughout the network.
