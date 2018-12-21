@@ -1,0 +1,67 @@
+!
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname R9
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+no ip domain lookup
+!
+ipv6 unicast-routing
+!
+!
+cdp run
+!
+!
+interface Loopback0
+ ip address 150.1.9.9 255.255.255.255
+ ipv6 address 2001:150:9:9::9/128
+!
+interface e0/1
+ no ip address
+ cdp enable
+ no shut
+!
+interface e0/1.9
+ encapsulation dot1Q 9
+ ip address 155.1.9.9 255.255.255.0
+ ipv6 address 2001:155:1:9::9/64
+!
+interface e0/1.79
+ encapsulation dot1Q 79
+ ip address 155.1.79.9 255.255.255.0
+ ipv6 address 2001:155:1:79::9/64
+!
+router ospf 1
+ network 150.1.0.0 0.0.255.255 area 0
+ network 155.1.0.0 0.0.255.255 area 0
+!
+!
+!
+ip forward-protocol nd
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ privilege level 15
+ no login
+!
+!
+end
