@@ -53,6 +53,7 @@
 ===================
 
 00 ine - advanced.technology.labs - 05 ospf - initial.ospf - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 05 ospf - initial.ospf - 01 - OSPF over Broadcast Media
 00 ine - advanced.technology.labs - 05 ospf - basic.ospf.routing - 00 - Initial Configurations
 
 ===================

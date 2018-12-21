@@ -1,0 +1,35 @@
+Task1: Configure OSPF using process ID of 1 on R6, R7, and R9 as follows:
+> Use only interface-level commands on R9.
+> Do not use any interface-level commands on R6 and R7.
+> Use area 67 between R6 and R7, and area 79 between R7 and R9.
+> Advertise Loopback0 prefixes of R6 in area 67 and Loopback0 of R9 in area 79.
+
+R9:
+!
+interface e0/1.79
+ ip ospf 1 area 79
+!
+interface Loopback0
+ ip ospf 1 area 79
+! 
+
+Task2: On R6, enable OSPF only for interfaces with the exact IP addresses of 150.1.6.6 and 155.1.67.6.
+
+R6:
+!
+router ospf 1
+ network 155.1.67.6 0.0.0.0 area 67
+ network 150.1.6.6 0.0.0.0 area 67
+!
+
+
+Task3: On R7, enable OSPF on all interfaces within the subnets 155.1.67.0/24 and 155.1.79.0/24.
+
+R7:
+!
+router ospf 1
+ network 155.1.67.0 0.0.0.255 area 67
+ network 155.1.79.0 0.0.0.255 area 79
+! 
+
+Task4: Ensure that R7 has IP connectivity with R6's and R9's Loopback0 prefixes.

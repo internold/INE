@@ -1,0 +1,187 @@
+R6#show ip ospf int br
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          1     67              150.1.6.6/32       1     LOOP  0/0
+Et0/1.67     1     67              155.1.67.6/24      10    BDR   1/1
+R6#
+
+R9#show ip ospf int br
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Lo0          1     79              150.1.9.9/32       1     LOOP  0/0
+Et0/1.79     1     79              155.1.79.9/24      10    DR    1/1
+R9#
+
+R6#show ip ospf int e0/1.67
+Ethernet0/1.67 is up, line protocol is up
+  Internet Address 155.1.67.6/24, Area 67, Attached via Network Statement
+  Process ID 1, Router ID 150.1.6.6, Network Type BROADCAST, Cost: 10
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           10        no          no            Base
+  Transmit Delay is 1 sec, State BDR, Priority 1
+  Designated Router (ID) 150.1.7.7, Interface address 155.1.67.7
+  Backup Designated router (ID) 150.1.6.6, Interface address 155.1.67.6
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:08
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Index 1/1/1, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1
+    Adjacent with neighbor 150.1.7.7  (Designated Router)
+  Suppress hello for 0 neighbor(s)
+R6#
+
+R9#show ip ospf int e0/1.79
+Ethernet0/1.79 is up, line protocol is up
+  Internet Address 155.1.79.9/24, Area 79, Attached via Interface Enable
+  Process ID 1, Router ID 150.1.9.9, Network Type BROADCAST, Cost: 10
+  Topology-MTID    Cost    Disabled    Shutdown      Topology Name
+        0           10        no          no            Base
+  Enabled by interface config, including secondary ip addresses
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router (ID) 150.1.9.9, Interface address 155.1.79.9
+  Backup Designated router (ID) 150.1.7.7, Interface address 155.1.79.7
+  Timer intervals configured, Hello 10, Dead 40, Wait 40, Retransmit 5
+    oob-resync timeout 40
+    Hello due in 00:00:01
+  Supports Link-local Signaling (LLS)
+  Cisco NSF helper support enabled
+  IETF NSF helper support enabled
+  Index 1/1/1, flood queue length 0
+  Next 0x0(0)/0x0(0)/0x0(0)
+  Last flood scan length is 0, maximum is 2
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 1, Adjacent neighbor count is 1
+    Adjacent with neighbor 150.1.7.7  (Backup Designated Router)
+  Suppress hello for 0 neighbor(s)
+R9#
+
+R7#show ip ospf nei
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+150.1.6.6         1   FULL/BDR        00:00:39    155.1.67.6      Ethernet0/1.67
+150.1.9.9         1   FULL/DR         00:00:35    155.1.79.9      Ethernet0/1.79
+R7#
+
+R6#show ip ospf nei
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+150.1.7.7         1   FULL/DR         00:00:37    155.1.67.7      Ethernet0/1.67
+R6#
+
+R9#show ip ospf nei
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+150.1.7.7         1   FULL/BDR        00:00:39    155.1.79.7      Ethernet0/1.79
+R9#
+
+R6#show ip ospf data
+
+            OSPF Router with ID (150.1.6.6) (Process ID 1)
+
+                Router Link States (Area 67)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+150.1.6.6       150.1.6.6       515         0x80000002 0x00421E 2
+150.1.7.7       150.1.7.7       516         0x80000002 0x000E02 1
+
+                Net Link States (Area 67)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+155.1.67.7      150.1.7.7       516         0x80000001 0x00A6BD
+R6#
+
+R7#show ip ospf data
+
+            OSPF Router with ID (150.1.7.7) (Process ID 1)
+
+                Router Link States (Area 67)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+150.1.6.6       150.1.6.6       573         0x80000002 0x00421E 2
+150.1.7.7       150.1.7.7       572         0x80000002 0x000E02 1
+
+                Net Link States (Area 67)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+155.1.67.7      150.1.7.7       572         0x80000001 0x00A6BD
+
+                Router Link States (Area 79)
+
+Link ID         ADV Router      Age         Seq#       Checksum Link count
+150.1.7.7       150.1.7.7       652         0x80000002 0x002BCA 1
+150.1.9.9       150.1.9.9       656         0x80000002 0x00B977 2
+
+                Net Link States (Area 79)
+
+Link ID         ADV Router      Age         Seq#       Checksum
+155.1.79.9      150.1.9.9       656         0x80000001 0x003517
+R7#
+
+
+R6#show ip ro ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+R6#
+
+
+R9#show ip ro ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+R9#
+
+
+R7#show ip ro ospf
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      150.1.0.0/32 is subnetted, 3 subnets
+O        150.1.6.6 [110/11] via 155.1.67.6, 00:12:14, Ethernet0/1.67
+O        150.1.9.9 [110/11] via 155.1.79.9, 00:13:29, Ethernet0/1.79
+R7#
+
+
+R7#ping 150.1.6.6
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.6.6, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+R7#ping 150.1.9.9
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.9.9, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R7#
