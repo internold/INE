@@ -1,0 +1,19 @@
+Task1: Configure RIPv2 on all interfaces in the 150.1.0.0 and 155.1.0.0 networks.
+
+R1: to R10:
+!
+router rip
+ version 2
+ network 150.1.0.0
+ network 155.1.0.0
+!
+
+Task2: Disable auto summarization.
+
+R1: to R10:
+!
+router rip
+ no auto-summary
+!
+
+Task3: Verify your configuration by testing that all routers have full IPv4 reachability.
