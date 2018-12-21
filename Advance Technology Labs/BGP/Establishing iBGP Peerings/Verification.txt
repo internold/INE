@@ -1,0 +1,333 @@
+Before applying configurations, initial configurations
+
+R5#show ip ei int
+EIGRP-IPv4 Interfaces for AS(100)
+                              Xmit Queue   PeerQ        Mean   Pacing Time   Multicast    Pending
+Interface              Peers  Un/Reliable  Un/Reliable  SRTT   Un/Reliable   Flow Timer   Routes
+Et0/1.5                  0        0/0       0/0           0       0/0            0           0
+Et0/1.45                 1        0/0       0/0           2       0/2           50           0
+Et0/1.58                 1        0/0       0/0           3       0/2           50           0
+Tu0                      4        0/0       0/0          63       6/227         50           0
+
+R5#show ip ei nei
+EIGRP-IPv4 Neighbors for AS(100)
+H   Address                 Interface              Hold Uptime   SRTT   RTO  Q  Seq
+                                                   (sec)         (ms)       Cnt Num
+5   155.1.0.2               Tu0                      13 00:03:00   76  1362  0  10
+4   155.1.0.4               Tu0                      14 00:03:00   86  1362  0  23
+3   155.1.0.1               Tu0                      12 00:03:08   71  1362  0  19
+2   155.1.0.3               Tu0                      12 00:03:08   20  1362  0  26
+1   155.1.58.8              Et0/1.58                 14 00:03:21    3   100  0  7
+0   155.1.45.4              Et0/1.45                 11 00:03:21    2   100  0  20
+R5#
+
+
+
+access-list 100 permit tcp any host 155.1.0.2
+access-list 100 permit tcp host 155.1.0.2 any
+
+ do debug ip packet detail 100
+
+router bgp 100
+ neighbor 155.1.0.2 remote-as 100
+
+00:37:34: IP: s=155.1.0.2 (Tunnel0), d=155.1.0.1 (Tunnel0), len 44, rcvd 3
+00:37:34:     TCP src=37266, dst=179, seq=3287937786, ack=0, win=16384 SYN
+00:37:34: IP: s=155.1.0.1 (local), d=155.1.0.2 (Tunnel0), len 44, sending
+00:37:34:     TCP src=179, dst=37266, seq=3720664877, ack=3287937787, win=16384 ACK SYN
+00:37:34: IP: s=155.1.0.2 (Tunnel0), d=155.1.0.1 (Tunnel0), len 40, rcvd 3
+00:37:34:     TCP src=37266, dst=179, seq=3287937787, ack=3720664878, win=16384 ACK
+00:37:34: IP: s=155.1.0.1 (local), d=155.1.0.2 (Tunnel0), len 97, sending
+00:37:34:     TCP src=179, dst=37266, seq=3720664878, ack=3287937844, win=16327 ACK PSH
+00:37:34: %BGP-5-ADJCHANGE: neighbor 155.1.0.2 Up
+
+
+
+
+R1#show ip bgp summ
+BGP router identifier 150.1.1.1, local AS number 100
+BGP table version is 11, main routing table version 11
+8 network entries using 1152 bytes of memory
+8 path entries using 640 bytes of memory
+2/2 BGP path/bestpath attribute entries using 304 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 2096 total bytes of memory
+BGP activity 8/0 prefixes, 8/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+155.1.0.2       4          100      22      22       11    0    0 00:17:51        1
+155.1.0.3       4          100      43      44       11    0    0 00:36:20        1
+155.1.0.4       4          100      32      32       11    0    0 00:26:12        1
+155.1.0.5       4          100      31      31       11    0    0 00:26:01        1
+155.1.37.7      4          100      31      31       11    0    0 00:25:37        1
+155.1.58.8      4          100      31      31       11    0    0 00:25:23        1
+155.1.146.6     4          100      32      30       11    0    0 00:25:47        1
+R1#
+
+
+R1#show ip bgp nei 155.1.0.2
+BGP neighbor is 155.1.0.2,  remote AS 100, internal link
+  BGP version 4, remote router ID 150.1.2.2
+  BGP state = Established, up for 00:20:57
+  Last read 00:00:10, last write 00:00:23, hold time is 180, keepalive interval is 60 seconds
+  Neighbor sessions:
+    1 active, is not multisession capable (disabled)
+  Neighbor capabilities:
+    Route refresh: advertised and received(new)
+    Four-octets ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+    Enhanced Refresh Capability: advertised and received
+    Multisession Capability:
+    Stateful switchover support enabled: NO for session 1
+  Message statistics:
+    InQ depth is 0
+    OutQ depth is 0
+
+                         Sent       Rcvd
+    Opens:                  1          1
+    Notifications:          0          0
+    Updates:                2          2
+    Keepalives:            23         23
+    Route Refresh:          0          0
+    Total:                 26         26
+  Do log neighbor state changes (via global configuration)
+  Default minimum time between advertisement runs is 0 seconds
+
+ For address family: IPv4 Unicast
+  Session: 155.1.0.2
+  BGP table version 11, neighbor version 11/0
+  Output queue size : 0
+  Index 1, Advertise bit 0
+  1 update-group member
+  Slow-peer detection is disabled
+  Slow-peer split-update-group dynamic is disabled
+                                 Sent       Rcvd
+  Prefix activity:               ----       ----
+    Prefixes Current:               1          1 (Consumes 80 bytes)
+    Prefixes Total:                 1          1
+    Implicit Withdraw:              0          0
+    Explicit Withdraw:              0          0
+    Used as bestpath:             n/a          1
+    Used as multipath:            n/a          0
+
+                                   Outbound    Inbound
+  Local Policy Denied Prefixes:    --------    -------
+    Bestpath from this peer:              1        n/a
+    Bestpath from iBGP peer:              8        n/a
+    Total:                                9          0
+  Number of NLRIs in the update sent: max 1, min 0
+  Last detected as dynamic slow peer: never
+  Dynamic slow peer recovered: never
+  Refresh Epoch: 1
+  Last Sent Refresh Start-of-rib: never
+  Last Sent Refresh End-of-rib: never
+  Last Received Refresh Start-of-rib: never
+  Last Received Refresh End-of-rib: never
+                                       Sent       Rcvd
+        Refresh activity:              ----       ----
+          Refresh Start-of-RIB          0          0
+          Refresh End-of-RIB            0          0
+
+  Address tracking is enabled, the RIB does have a route to 155.1.0.2
+  Connections established 1; dropped 0
+  Last reset never
+  Interface associated: (none) (peering address in same link)
+  Transport(tcp) path-mtu-discovery is enabled
+  Graceful-Restart is disabled
+  SSO is disabled
+Connection state is ESTAB, I/O status: 1, unread input bytes: 0
+Connection is ECN Disabled, Mininum incoming TTL 0, Outgoing TTL 255
+Local host: 155.1.0.1, Local port: 179
+Foreign host: 155.1.0.2, Foreign port: 37266
+Connection tableid (VRF): 0
+Maximum output segment queue size: 50
+
+Enqueued packets for retransmit: 0, input: 0  mis-ordered: 0 (0 bytes)
+
+Event Timers (current time is 0x35958D):
+Timer          Starts    Wakeups            Next
+Retrans            25          0             0x0
+TimeWait            0          0             0x0
+AckHold            26         25             0x0
+SendWnd             0          0             0x0
+KeepAlive           0          0             0x0
+GiveUp              0          0             0x0
+PmtuAger            0          0             0x0
+DeadWait            0          0             0x0
+Linger              0          0             0x0
+ProcessQ            0          0             0x0
+
+iss: 3720664877  snduna: 3720665451  sndnxt: 3720665451
+irs: 3287937786  rcvnxt: 3287938360
+
+sndwnd:  15811  scale:      0  maxrcvwnd:  16384
+rcvwnd:  15811  scale:      0  delrcvwnd:    573
+
+SRTT: 964 ms, RTTO: 1245 ms, RTV: 281 ms, KRTT: 0 ms
+minRTT: 1 ms, maxRTT: 1000 ms, ACK hold: 200 ms
+uptime: 1257075 ms, Sent idletime: 10670 ms, Receive idletime: 10876 ms
+Status Flags: passive open, gen tcbs
+Option Flags: nagle, path mtu capable
+IP Precedence value : 6
+
+Datagrams (max data segment is 1360 bytes):
+Rcvd: 51 (out of order: 0), with data: 26, total data bytes: 573
+Sent: 52 (retransmit: 0, fastretransmit: 0, partialack: 0, Second Congestion: 0), with data: 25, total data bytes: 573
+
+ Packets received in fast path: 0, fast processed: 0, slow path: 0
+ fast lock acquisition failures: 0, slow path: 0
+TCP Semaphore      0xF6863904  FREE
+R1#
+
+
+
+R1#show bgp ipv4 unicast summary
+BGP router identifier 150.1.1.1, local AS number 100
+BGP table version is 11, main routing table version 11
+8 network entries using 1152 bytes of memory
+8 path entries using 640 bytes of memory
+2/2 BGP path/bestpath attribute entries using 304 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 2096 total bytes of memory
+BGP activity 8/0 prefixes, 8/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+155.1.0.2       4          100      29      30       11    0    0 00:24:36        1
+155.1.0.3       4          100      51      51       11    0    0 00:43:05        1
+155.1.0.4       4          100      40      39       11    0    0 00:32:56        1
+155.1.0.5       4          100      38      39       11    0    0 00:32:45        1
+155.1.37.7      4          100      38      38       11    0    0 00:32:21        1
+155.1.58.8      4          100      38      38       11    0    0 00:32:08        1
+155.1.146.6     4          100      39      38       11    0    0 00:32:32        1
+R1#
+
+
+R1#show ip bgp
+BGP table version is 11, local router ID is 150.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  150.1.1.1/32     0.0.0.0                  0         32768 i
+ *>i 150.1.2.2/32     155.1.0.2                0    100      0 i
+ *>i 150.1.3.3/32     155.1.0.3                0    100      0 i
+ *>i 150.1.4.4/32     155.1.0.4                0    100      0 i
+ *>i 150.1.5.5/32     155.1.0.5                0    100      0 i
+ *>i 150.1.6.6/32     155.1.146.6              0    100      0 i
+ *>i 150.1.7.7/32     155.1.37.7               0    100      0 i
+ *>i 150.1.8.8/32     155.1.58.8               0    100      0 i
+R1#
+
+
+R1#show ip ro bgp
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP
+       a - application route
+       + - replicated route, % - next hop override
+
+Gateway of last resort is not set
+
+      150.1.0.0/32 is subnetted, 8 subnets
+B        150.1.2.2 [200/0] via 155.1.0.2, 00:09:35
+B        150.1.3.3 [200/0] via 155.1.0.3, 00:09:28
+B        150.1.4.4 [200/0] via 155.1.0.4, 00:09:22
+B        150.1.5.5 [200/0] via 155.1.0.5, 00:09:13
+B        150.1.6.6 [200/0] via 155.1.146.6, 00:09:08
+B        150.1.7.7 [200/0] via 155.1.37.7, 00:08:55
+B        150.1.8.8 [200/0] via 155.1.58.8, 00:08:55
+R1#
+
+R1#show ip ro 150.1.7.7
+Routing entry for 150.1.7.7/32
+  Known via "bgp 100", distance 200, metric 0, type internal
+  Last update from 155.1.37.7 00:09:42 ago
+  Routing Descriptor Blocks:
+  * 155.1.37.7, from 155.1.37.7, 00:09:42 ago
+      Route metric is 0, traffic share count is 1
+      AS Hops 0
+      MPLS label: none
+
+
+R1#show ip ro 155.1.67.7
+Routing entry for 155.1.67.0/24
+  Known via "eigrp 100", distance 90, metric 307200, type internal
+  Redistributing via eigrp 100
+  Last update from 155.1.146.6 on Ethernet0/1.146, 01:04:14 ago
+  Routing Descriptor Blocks:
+  * 155.1.146.6, from 155.1.146.6, 01:04:14 ago, via Ethernet0/1.146
+      Route metric is 307200, traffic share count is 1
+      Total delay is 2000 microseconds, minimum bandwidth is 10000 Kbit
+      Reliability 255/255, minimum MTU 1500 bytes
+      Loading 1/255, Hops 1
+
+R1#show ip ro 155.1.146.6
+Routing entry for 155.1.146.0/24
+  Known via "connected", distance 0, metric 0 (connected, via interface)
+  Redistributing via eigrp 100
+  Routing Descriptor Blocks:
+  * directly connected, via Ethernet0/1.146
+      Route metric is 0, traffic share count is 1
+R1#
+
+
+R1#show ip bgp neigh 155.1.0.2 advertised-routes
+BGP table version is 11, local router ID is 150.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ *>  150.1.1.1/32     0.0.0.0                  0         32768 i
+
+Total number of prefixes 1
+R1#
+
+
+R1#ping 150.1.2.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.2.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 5/5/6 ms
+R1#ping 150.1.3.3
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.3.3, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 5/5/6 ms
+R1#ping 150.1.4.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.4.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 5/5/6 ms
+R1#ping 150.1.5.5
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.5.5, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/4/5 ms
+R1#ping 150.1.6.6
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.6.6, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R1#ping 150.1.7.7
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.7.7, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+R1#ping 150.1.8.8
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+R1#

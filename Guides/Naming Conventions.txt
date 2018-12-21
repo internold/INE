@@ -59,6 +59,7 @@
 ===================
 
 00 ine - advanced.technology.labs - 07 bgp - initial.bgp - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 07 bgp - initial.bgp - 01 - Establishing iBGP Peerings
 
 ===================
 
