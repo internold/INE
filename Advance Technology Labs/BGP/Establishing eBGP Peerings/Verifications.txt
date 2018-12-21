@@ -1,0 +1,146 @@
+
+R7#show ip bgp neigh 155.1.79.9
+BGP neighbor is 155.1.79.9,  remote AS 54, external link
+  BGP version 4, remote router ID 212.18.3.1
+  BGP state = Established, up for 00:02:38
+<clipped>
+Connection is ECN Disabled, Mininum incoming TTL 0, Outgoing TTL 1
+Local host: 155.1.79.7, Local port: 38995
+Foreign host: 155.1.79.9, Foreign port: 179
+Connection tableid (VRF): 0
+Maximum output segment queue size: 50
+<clipped>
+
+R7#show ip bgp summary
+BGP router identifier 150.1.7.7, local AS number 100
+BGP table version is 24, main routing table version 24
+18 network entries using 2592 bytes of memory
+28 path entries using 2240 bytes of memory
+8/6 BGP path/bestpath attribute entries using 1216 bytes of memory
+2 BGP AS-PATH entries using 48 bytes of memory
+1 BGP community entries using 24 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 6120 total bytes of memory
+BGP activity 18/0 prefixes, 28/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+155.1.0.5       4          100      21      26       24    0    0 00:16:52        1
+155.1.23.2      4          100      22      26       24    0    0 00:16:59        1
+155.1.37.3      4          100      22      26       24    0    0 00:16:58        1
+155.1.58.8      4          100      23      26       24    0    0 00:16:52       11
+155.1.67.6      4          100      22      26       24    0    0 00:16:54        1
+155.1.79.9      4           54      13      11       24    0    0 00:04:51       10
+155.1.146.1     4          100      22      26       24    0    0 00:16:56        1
+155.1.146.4     4          100      22      26       24    0    0 00:17:00        1
+R7#
+
+
+R1#show ip bgp
+BGP table version is 19, local router ID is 150.1.1.1
+Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
+              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
+              x best-external, a additional-path, c RIB-compressed,
+Origin codes: i - IGP, e - EGP, ? - incomplete
+RPKI validation codes: V valid, I invalid, N Not found
+
+     Network          Next Hop            Metric LocPrf Weight Path
+ * i 28.119.16.0/24   155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 28.119.17.0/24   155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 112.0.0.0        155.1.108.10             0    100      0 54 50 60 i
+ *>i                  155.1.79.9               0    100      0 54 50 60 i
+ * i 113.0.0.0        155.1.108.10             0    100      0 54 50 60 i
+ *>i                  155.1.79.9               0    100      0 54 50 60 i
+ * i 114.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 115.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 116.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+     Network          Next Hop            Metric LocPrf Weight Path
+ * i 117.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 118.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ * i 119.0.0.0        155.1.108.10             0    100      0 54 i
+ *>i                  155.1.79.9               0    100      0 54 i
+ *>  150.1.1.1/32     0.0.0.0                  0         32768 i
+ *>i 150.1.2.2/32     155.1.0.2                0    100      0 i
+ *>i 150.1.3.3/32     155.1.0.3                0    100      0 i
+ *>i 150.1.4.4/32     155.1.0.4                0    100      0 i
+ *>i 150.1.5.5/32     155.1.0.5                0    100      0 i
+ *>i 150.1.6.6/32     155.1.146.6              0    100      0 i
+ *>i 150.1.7.7/32     155.1.67.7               0    100      0 i
+ *>i 150.1.8.8/32     155.1.58.8               0    100      0 i
+R1#
+
+
+R1#show ip bgp 112.0.0.0 255.0.0.0
+BGP routing table entry for 112.0.0.0/8, version 12
+Paths: (2 available, best #2, table default)
+  Not advertised to any peer
+  Refresh Epoch 1
+  54 50 60
+    155.1.108.10 (metric 358400) from 155.1.58.8 (150.1.8.8)
+      Origin IGP, metric 0, localpref 100, valid, internal
+      rx pathid: 0, tx pathid: 0
+  Refresh Epoch 1
+  54 50 60
+    155.1.79.9 (metric 332800) from 155.1.67.7 (150.1.7.7)
+      Origin IGP, metric 0, localpref 100, valid, internal, best
+      rx pathid: 0, tx pathid: 0x0
+R1#
+
+
+R1#show ip ro 112.0.0.0
+Routing entry for 112.0.0.0/8
+  Known via "bgp 100", distance 200, metric 0
+  Tag 54, type internal
+  Last update from 155.1.79.9 00:03:08 ago
+  Routing Descriptor Blocks:
+  * 155.1.79.9, from 155.1.67.7, 00:03:08 ago
+      Route metric is 0, traffic share count is 1
+      AS Hops 3
+      Route tag 54
+      MPLS label: none
+R1#show ip ro 155.1.79.9
+Routing entry for 155.1.79.0/24
+  Known via "eigrp 100", distance 90, metric 332800, type internal
+  Redistributing via eigrp 100
+  Last update from 155.1.146.6 on Ethernet0/1.146, 00:03:21 ago
+  Routing Descriptor Blocks:
+    155.1.146.6, from 155.1.146.6, 00:03:21 ago, via Ethernet0/1.146
+      Route metric is 332800, traffic share count is 1
+      Total delay is 3000 microseconds, minimum bandwidth is 10000 Kbit
+      Reliability 255/255, minimum MTU 1500 bytes
+      Loading 1/255, Hops 2
+  * 155.1.13.3, from 155.1.13.3, 00:03:21 ago, via Ethernet0/1.13
+      Route metric is 332800, traffic share count is 1
+      Total delay is 3000 microseconds, minimum bandwidth is 10000 Kbit
+      Reliability 255/255, minimum MTU 1500 bytes
+      Loading 1/255, Hops 2
+R1#show ip ro 155.1.13.3
+Routing entry for 155.1.13.0/24
+  Known via "connected", distance 0, metric 0 (connected, via interface)
+  Redistributing via eigrp 100
+  Routing Descriptor Blocks:
+  * directly connected, via Ethernet0/1.13
+      Route metric is 0, traffic share count is 1
+R1#
+
+
+
+R1#traceroute 112.0.0.1 source Loopback 0
+Type escape sequence to abort.
+Tracing the route to 112.0.0.1
+VRF info: (vrf in name/id, vrf out name/id)
+  1 155.1.13.3 1 msec
+    155.1.146.6 1 msec
+    155.1.13.3 1 msec
+  2 155.1.67.7 1 msec
+    155.1.37.7 1 msec
+    155.1.67.7 1 msec
+  3 155.1.79.9 1 msec *  1 msec
+R1#

@@ -1,0 +1,31 @@
+Task1: R9 and R10 are configured for BGP in AS 54 and all other routers for BGP in AS 100.
+Task2: Configure EBGP peerings between R7 and R9, between R8 and R10 using their directly connected links.
+
+R7:
+!
+router bgp 100
+ neighbor 155.1.79.9 remote-as 54
+!
+
+R8:
+!
+router bgp 100
+ neighbor 155.1.108.10 remote-as 54
+!
+
+
+Task3: Advertise the directly connected links between R7 and R9, between R8 and R10 into EIGRP 100.
+
+R7:
+!
+router eigrp 100
+ network 155.1.79.0 0.0.0.255
+!
+
+R8:
+!
+router eigrp 100
+ network 155.1.108.0 0.0.0.255
+!
+
+Task4: Ensure full IPv4 reachability to all prefixes learned from AS 54, from all routers in AS 100 when sourcing traffic from Loopback0 interfaces.
