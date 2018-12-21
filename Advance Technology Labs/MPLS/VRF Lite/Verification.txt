@@ -1,0 +1,50 @@
+R6#show ip vrf
+  Name                             Default RD            Interfaces
+  VPN_A                            100:1                 Et0/1.67
+  VPN_B                            100:2                 Et0/1.76
+
+
+R6#ping vrf VPN_A 155.1.67.7
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 155.1.67.7, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+
+R6#ping vrf VPN_B 155.1.76.7
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 155.1.76.7, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+
+R6#show ip ro vrf VPN_A 192.168.7.0
+
+Routing Table: VPN_A
+Routing entry for 192.168.7.0/24
+  Known via "static", distance 1, metric 0
+  Routing Descriptor Blocks:
+  * 155.1.76.7, via Ethernet0/1.76
+      Route metric is 0, traffic share count is 1
+
+
+R6#show ip cef vrf VPN_A 192.168.7.0 detail
+192.168.7.0/24, epoch 0
+  nexthop 155.1.76.7 Ethernet0/1.76
+
+
+R7#ping vrf VPN_B 172.16.7.7 source lo102
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.16.7.7, timeout is 2 seconds:
+Packet sent with a source address of 192.168.7.7
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+
+
+R7#ping vrf VPN_A 192.168.7.7 source lo101
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.7.7, timeout is 2 seconds:
+Packet sent with a source address of 172.16.7.7
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+

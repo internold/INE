@@ -66,6 +66,7 @@
 ===================
 
 00 ine - advanced.technology.labs - 08 mpls - mpls.vrf.lite - 00 - Initial Configurations
+00 ine - advanced.technology.labs - 08 mpls - mpls.vrf.lite - 01 - VRF Lite
 
 ===================
 
