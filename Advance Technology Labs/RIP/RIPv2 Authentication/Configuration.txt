@@ -1,0 +1,27 @@
+Task1: Configure RIPv2 authentication on the Tunnel interfaces in the DMVPN cloud.
+> Use the MD5 key number 1 with the password CISCO.
+> All the spoke routers should be learning RIP routes from R5.
+
+R1: to R5:
+!
+key chain RIP
+ key 1
+  key-string CISCO
+!
+interface Tunnel0
+ ip rip authentication mode md5
+ ip rip authentication key-chain RIP
+! 
+
+Task2: Configure clear-text RIP authentication on the segment between R1 and R6 using the password CCIE.
+
+R1: and R6:
+!  
+key chain RIP_146
+ key 1
+  key-string CCIE
+!
+interface e0/1.146
+ ip rip authentication mode text
+ ip rip authentication key-chain RIP_146
+!
