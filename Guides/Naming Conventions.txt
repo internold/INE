@@ -41,6 +41,7 @@
 00 ine - advanced.technology.labs - 03 rip - initial.rip - 01 - RIPv2 Basic Configuration
 00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 00 - Initial Configurations
 00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 01 - RIPv2 Authentication
+00 ine - advanced.technology.labs - 03 rip - basic.rip.routing - 02 - RIPv2 Split Horizon
 
 ===================
 

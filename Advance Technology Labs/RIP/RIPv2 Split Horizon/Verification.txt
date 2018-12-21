@@ -1,0 +1,97 @@
+Before applying configurations in Task1:
+
+R5#show run int tu0
+Building configuration...
+
+Current configuration : 356 bytes
+!
+interface Tunnel0
+ ip address 155.1.0.5 255.255.255.0
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication NHRPPASS
+ ip nhrp map multicast dynamic
+ ip nhrp network-id 1
+ no ip split-horizon
+ ip tcp adjust-mss 1360
+ delay 1000
+ tunnel source Ethernet0/1.100
+ tunnel mode gre multipoint
+ tunnel key 150
+ tunnel protection ipsec profile DMVPN_PROFILE
+end
+
+
+R1#show ip ro rip | inc Tunnel0
+R        150.1.2.2 [120/2] via 155.1.0.2, 00:00:21, Tunnel0
+R        150.1.4.4 [120/2] via 155.1.0.4, 00:00:21, Tunnel0
+R        150.1.5.5 [120/1] via 155.1.0.5, 00:00:21, Tunnel0
+R        150.1.8.8 [120/2] via 155.1.0.5, 00:00:21, Tunnel0
+R        150.1.10.10 [120/3] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.5.0/24 [120/1] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.8.0/24 [120/2] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.10.0/24 [120/3] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.45.0/24 [120/1] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.58.0/24 [120/1] via 155.1.0.5, 00:00:21, Tunnel0
+R        155.1.108.0/24 [120/2] via 155.1.0.5, 00:00:21, Tunnel0
+
+R1#show ip ro 150.1.2.2
+Routing entry for 150.1.2.2/32
+  Known via "rip", distance 120, metric 2
+  Redistributing via rip
+  Last update from 155.1.0.2 on Tunnel0, 00:00:10 ago
+  Routing Descriptor Blocks:
+  * 155.1.0.2, from 155.1.0.5, 00:00:10 ago, via Tunnel0
+      Route metric is 2, traffic share count is 1
+
+R1#show ip rip database 150.1.2.2 255.255.255.255
+150.1.2.2/32
+    [2] via 155.1.0.2, from 155.1.0.5, 00:00:03, Tunnel0
+
+R1#ping 150.1.2.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.2.2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/5/7 ms
+
+R1#ping 150.1.4.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.4.4, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 2/5/7 ms
+R1#
+
+
+After applying configurations in Task1: and 3 minutes after
+
+R1#show ip ro rip | inc Tunnel0
+R        150.1.5.5 [120/1] via 155.1.0.5, 00:00:03, Tunnel0
+R        150.1.8.8 [120/2] via 155.1.0.5, 00:00:03, Tunnel0
+R        150.1.10.10 [120/3] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.5.0/24 [120/1] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.8.0/24 [120/2] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.10.0/24 [120/3] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.45.0/24 [120/1] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.58.0/24 [120/1] via 155.1.0.5, 00:00:03, Tunnel0
+R        155.1.108.0/24 [120/2] via 155.1.0.5, 00:00:03, Tunnel0
+
+R1#show ip ro 150.1.2.2
+% Subnet not in table
+
+R1#show ip rip database 150.1.2.2 255.255.255.255
+%Route not in database
+
+R1#ping 150.1.2.2
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.2.2, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+
+R1#ping 150.1.4.4
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 150.1.4.4, timeout is 2 seconds:
+.....
+Success rate is 0 percent (0/5)
+
+R5#show ip int tu0 | inc Split
+  Split horizon is enabled

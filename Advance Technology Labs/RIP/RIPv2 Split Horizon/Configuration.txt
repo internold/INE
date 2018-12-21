@@ -1,0 +1,9 @@
+Task1: Enable split-horizon on R5’s connection to the DMVPN cloud.
+
+R5:
+!
+interface Tunnel0
+ ip split-horizon
+!
+
+Task2: Test IPv4 reachability to all networks and note any changes within the topology.
